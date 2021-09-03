@@ -56,6 +56,8 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'task_manager.urls'
 
+STATIC_ROOT = ''
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
