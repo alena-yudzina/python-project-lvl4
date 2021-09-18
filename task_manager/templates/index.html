@@ -1,1 +1,54 @@
-<h1>Hello, {{ who }}!</h1>
+{% load static %}
+{% load i18n %}
+
+{% load django_bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+<head>
+<link rel="icon" href="{% static 'favicon.svg' %}">
+</head>
+<body>
+    <nav class="py-2 bg-light">
+        <div class="container d-flex flex-wrap">
+        <ul class="nav me-auto">
+            <li class="nav-item"><a href="/" class="nav-link link-dark px-2 active" aria-current="page">{% trans "Task manager" %}</a></li>
+            <li class="nav-item"><a href="/" class="nav-link fw-light link-secondary px-2">{% trans "Users" %}</a></li>
+
+        </ul>
+        <ul class="nav">
+            <li class="nav-item"><a href="/" class="nav-link fw-light link-secondary px-2">{% trans "Log in" %}</a></li>
+            <li class="nav-item"><a href="/" class="nav-link fw-light link-secondary px-2">{% trans "Sign up" %}</a></li>
+        </ul>
+        </div>
+    </nav>
+
+<div class="container wrapper flex-grow-1 p-5">
+    <div class="card my-2 mx-3">
+    <div class="card-header bg-light">
+        {{ greeting }}!
+    </div>
+    <div class="card-body">
+        <h5 class="card-title">{% trans "Hello from Hexlet!" %}</h5>
+        <a href="#" class="btn btn-primary">{% trans "Learn more" %}</a>
+    </div>
+    </div>
+</div>
+
+{% block footer %}
+    <div class="container fixed-bottom">
+    <footer>
+        <ul class="nav justify-content-center border-top pb-1 mb-3">
+        <li class="nav-item"><a href="https://ru.hexlet.io/" class="nav-link px-2 text-muted">Hexlet</a></li>
+        <li class="nav-item"><a href="https://github.com/uzapolsky" class="nav-link px-2 text-muted">Github</a></li>
+        </ul>
+    </footer>
+    </div>
+{% endblock %}
+
+
+<div id="rememberry__extension__root" style="all: unset;"></div>
+
+
+</body>
+
