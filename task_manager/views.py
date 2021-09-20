@@ -1,6 +1,8 @@
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
-from django.shortcuts import render, HttpResponseRedirect
+from django.contrib import messages
+from django.http import request
+from django.shortcuts import render, HttpResponseRedirect, redirect
 from django.urls import reverse
 from django.utils.translation import gettext as _
 from django.views import View
@@ -26,12 +28,26 @@ class Login(View):
         form = LoginForm()
         return render(request, 'login.html', context = {'form': form})
 
+    def post(self, request, *args, **kwargs):
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        print(username, password)
+        user = authenticate(request, username=username, password=password)
+
+        if user is not None:
+            login(request, user)
+            return redirect('/')
+        
+        else:
+            messages.info(request, _('username or password incorrect'))
+        
+        return render(request, 'login.html', context={})
 
 class Logout(View):
 
     def get(self, request, *args, **kwargs):
         logout(request)
-        return HttpResponseRedirect(reverse('/'))
+        return redirect('/')
 
 
 class Users(View):

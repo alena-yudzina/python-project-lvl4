@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-18 14:45+0300\n"
+"POT-Creation-Date: 2021-09-19 15:10+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,30 +20,78 @@ msgstr ""
 "%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
 "%100>=11 && n%100<=14)? 2 : 3);\n"
 
-#: task_manager/templates/index.html:15
+#: task_manager/templates/base.html:20 task_manager/templates/base.html:36
 msgid "Task manager"
 msgstr "Менеджер задач"
 
-#: task_manager/templates/index.html:16
+#: task_manager/templates/base.html:21 task_manager/templates/base.html:37
+#: task_manager/templates/users.html:12
 msgid "Users"
 msgstr "Пользователи"
 
-#: task_manager/templates/index.html:20
+#: task_manager/templates/base.html:22
+msgid "Statuses"
+msgstr ""
+
+#: task_manager/templates/base.html:23
+msgid "Tags"
+msgstr ""
+
+#: task_manager/templates/base.html:24
+msgid "Tasks"
+msgstr ""
+
+#: task_manager/templates/base.html:27
+#, fuzzy
+#| msgid "Log in"
+msgid "Log out"
+msgstr "Вход"
+
+#: task_manager/templates/base.html:41
 msgid "Log in"
 msgstr "Вход"
 
-#: task_manager/templates/index.html:21
+#: task_manager/templates/base.html:42
 msgid "Sign up"
 msgstr "Регистрация"
 
-#: task_manager/templates/index.html:32
+#: task_manager/templates/index.html:18
 msgid "Hello from Hexlet!"
 msgstr "Привет от Хекслета!"
 
-#: task_manager/templates/index.html:33
+#: task_manager/templates/index.html:19
 msgid "Learn more"
 msgstr "Узнать больше"
 
-#: task_manager/views.py:6
-msgid "Hello"
-msgstr "Привет"
+#: task_manager/templates/login.html:18
+#, fuzzy
+#| msgid "Users"
+msgid "Username"
+msgstr "Пользователь"
+
+#: task_manager/templates/login.html:22
+msgid "Password"
+msgstr "Пароль"
+
+#: task_manager/templates/login.html:25
+msgid "Submit"
+msgstr "Войти"
+
+#: task_manager/templates/users.html:17
+msgid "username"
+msgstr ""
+
+#: task_manager/templates/users.html:18
+msgid "first name"
+msgstr "имя"
+
+#: task_manager/templates/users.html:19
+msgid "last name"
+msgstr "фамилия"
+
+#: task_manager/templates/users.html:20
+msgid "date joined"
+msgstr "дата регистрации"
+
+#~ msgid "Hello"
+#~ msgstr "Привет"

@@ -8,11 +8,22 @@
 {% bootstrap_javascript %}
 
 {% block content %}
-    <form method="POST" action="">
-    
-        {% csrf_token %}
-        {{ form.as_p }}
+<div class="d-flex justify-content-center"> 
+    <div class="col-md-5">
+        <form method="POST" action="">
+        
+            {% csrf_token %}
 
-        <input type="submit" name="Log In">
-    </form>
+            <div class="mb-3">
+                <label class="form-label">{% trans "Username" %}</label>
+                <input type="username" name="username" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">{% trans "Password" %}</label>
+                <input type="password" name="password" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-primary">{% trans "Submit" %}</button>
+        </form>
+    </div>
+</div>
 {% endblock %}
