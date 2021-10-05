@@ -1,13 +1,16 @@
-from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.models import User
 from django.contrib import messages
-from django.http import request
-from django.shortcuts import render, HttpResponseRedirect, redirect
-from django.urls import reverse
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.mixins import PermissionRequiredMixin
+from django.contrib.auth.models import Permission, User
+from django.contrib.auth.views import LoginView
+from django.shortcuts import get_object_or_404, redirect, render
+from django.urls import reverse, reverse_lazy
+from django.urls.base import reverse_lazy
 from django.utils.translation import gettext as _
 from django.views import View
+from django.views.generic import UpdateView
 
-from .models import LoginForm
+from .forms import UserCreationWithEmailForm, UserUpdateForm
 
 
 def index(request):
@@ -16,46 +19,52 @@ def index(request):
     })
 
 
-class SignUp(View):
+class SignupUserView(View):
 
-    def get(self, request, *args, **kwargs):
-        return render(request, 'sign_up_form.html', context = {})
+    def get(self, request):
+        form = UserCreationWithEmailForm()
+        return render(request, 'registration/signup.html', {'form': form})
 
-
-class Login(View):
-
-    def get(self, request, *args, **kwargs):
-        form = LoginForm()
-        return render(request, 'login.html', context = {'form': form})
-
-    def post(self, request, *args, **kwargs):
-        username = request.POST.get('username')
-        password = request.POST.get('password')
-        print(username, password)
-        user = authenticate(request, username=username, password=password)
-
-        if user is not None:
-            login(request, user)
-            return redirect('/')
-        
-        else:
-            messages.info(request, _('username or password incorrect'))
-        
-        return render(request, 'login.html', context={})
-
-class Logout(View):
-
-    def get(self, request, *args, **kwargs):
-        logout(request)
+    def post(self, request):
+        form = UserCreationWithEmailForm(request.POST)
+        if not form.is_valid():
+            return render(request, 'registration/signup.html', {'form': form})
+        form.save()
+        username = form.cleaned_data.get('username')
+        password = form.cleaned_data.get('password1')
+        user = authenticate(username=username, password=password)
+        login(request, user)
         return redirect('/')
 
 
-class Users(View):
+class LoginUserView(LoginView):
+    def get_success_url(self):
+        return reverse('/')
+
+
+class UserUpdateView(UpdateView):
+    form_class = UserUpdateForm
+    template_name = 'registration/update.html'
+    success_url = reverse_lazy('/')
+
+
+    def get(self, request, user_id):
+        if not user_id == request.user.id:
+            messages.error(self.request, 'Вы не можете изменять других пользователей')
+            return redirect('users')
+        return super(UpdateView, self).get(self, request)
+
+
+    def get_object(self):
+        user = get_object_or_404(User, id=self.kwargs['user_id'])
+        return user
+
+
+class UsersView(View):
     def get(self, request, *args, **kwargs):
         users = User.objects.all().order_by('username')
         users_context = []
         fields = User._meta.get_fields()
-        print(fields)
         for user in users:
             users_context.append({
                 'id': user.id,

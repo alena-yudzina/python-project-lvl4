@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% load i18n %}
+
+{% load django_bootstrap5 %}
+
+{% block content %}
+<div class="d-flex justify-content-center"> 
+    <div class="col-md-5">
+        <form method="POST" action="{% url 'login' %}">
+        
+            {% csrf_token %}
+
+            {% bootstrap_form form %}
+
+            {% bootstrap_button content="Submit" button_type="submit" %}
+
+        </form>
+    </div>
+</div>
+{% endblock %}

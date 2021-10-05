@@ -1,64 +1,65 @@
-{% load static %}
-{% load i18n %}
-
-{% load django_bootstrap5 %}
-{% bootstrap_css %}
-{% bootstrap_javascript %}
+{% load static %} {% load i18n %}
 
 <!DOCTYPE html>
+
 <head>
-    <title>{% block title %}Task manager{% endblock %}</title>
-    <link rel="icon" href="{% static 'favicon.svg' %}">
+  <title>{% block title %}Task manager{% endblock %}</title>
+  <link rel="icon" href="{% static 'favicon.svg' %}" type="image/x-icon">
 </head>
 
-<body>
-    {% block navbar %}
+{% load django_bootstrap5 %} {% bootstrap_css %} {% bootstrap_javascript %}
+
+<body class="d-flex flex-column min-vh-100">
+  {% block navbar %}
+  <nav class="navbar navbar-expand-md navbar-light bg-light">
+    <div class="container">
+      <a href="{% url '/' %}" class="navbar-brand">{% trans "Task manager" %}</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navmenu">
+        <ul class="navbar-nav">
+          <li class="nav-item"><a href="{% url 'users' %}" class="nav-link fw-light">{% trans "Users" %}</a></li>
+        </ul>
         {% if user.is_authenticated %}
-            <nav class="py-2 bg-light">
-                <div class="container d-flex flex-wrap">
-                <ul class="nav me-auto">
-                    <li class="nav-item"><a href="{% url '/' %}" class="nav-link link-dark px-2 active" aria-current="page">{% trans "Task manager" %}</a></li>
-                    <li class="nav-item"><a href="{% url 'users' %}" class="nav-link fw-light link-secondary px-2">{% trans "Users" %}</a></li>
-                    <li class="nav-item"><a href="{% url '/' %}" class="nav-link fw-light link-secondary px-2">{% trans "Statuses" %}</a></li>
-                    <li class="nav-item"><a href="{% url '/' %}" class="nav-link fw-light link-secondary px-2">{% trans "Tags" %}</a></li>
-                    <li class="nav-item"><a href="{% url '/' %}" class="nav-link fw-light link-secondary px-2">{% trans "Tasks" %}</a></li>
-                </ul>
-                <ul class="nav">
-                    <li class="nav-item"><a href="{% url 'logout' %}" class="nav-link fw-light link-secondary px-2">{% trans "Log out" %}</a></li>
-                </ul>
-                </div>
-            </nav>
-        
+        <ul class="navbar-nav">
+          <li class="nav-item"><a href="{% url '/' %}" class="nav-link fw-light">{% trans "Statuses" %}</a></li>
+        </ul>
+        <ul class="navbar-nav">
+          <li class="nav-item"><a href="{% url '/' %}" class="nav-link fw-light">{% trans "Tags" %}</a></li>
+        </ul>
+        <ul class="navbar-nav">
+          <li class="nav-item"><a href="{% url '/' %}" class="nav-link fw-light">{% trans "Tasks" %}</a></li>
+        </ul>
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a href="{% url 'logout' %}" class="nav-link fw-light">{% trans "Log out" %}</a></li>
+        </ul>
         {% else %}
-            <nav class="py-2 bg-light">
-                <div class="container d-flex flex-wrap">
-                <ul class="nav me-auto">
-                    <li class="nav-item"><a href="{% url '/' %}" class="nav-link link-dark px-2 active" aria-current="page">{% trans "Task manager" %}</a></li>
-                    <li class="nav-item"><a href="{% url 'users' %}" class="nav-link fw-light link-secondary px-2">{% trans "Users" %}</a></li>
-
-                </ul>
-                <ul class="nav">
-                    <li class="nav-item"><a href="{% url 'login' %}" class="nav-link fw-light link-secondary px-2">{% trans "Log in" %}</a></li>
-                    <li class="nav-item"><a href="{% url 'signup' %}" class="nav-link fw-light link-secondary px-2">{% trans "Sign up" %}</a></li>
-                </ul>
-                </div>
-            </nav>
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a href="{% url 'login' %}" class="nav-link fw-light">{% trans "Log in" %}</a></li>
+        </ul>
+        <ul class="navbar-nav">
+          <li class="nav-item"><a href="{% url 'signup' %}" class="nav-link fw-light">{% trans "Sign up" %}</a></li>
+        </ul>
         {% endif %}
-    {% endblock %}
+      </div>
+  </nav>
+  {% endblock %}
 
-    <div class="container py-5">
-        {% block content %}{% endblock %}
+  <div class="container wrapper flex-grow-1 my-3">
+    {% block content %}{% endblock %}
+  </div>
+
+  {% block footer %}
+
+  <footer>
+    <div class="d-flex justify-content-center border-top pb-1 mb-3">
+      <div class="row">
+        <div class="col"><a href="https://ru.hexlet.io/" class="nav-link px-2 text-muted">Hexlet</a></div>
+        <div class="col"><a href="https://github.com/uzapolsky" class="nav-link px-2 text-muted">Github</a></div>
+      </div>
     </div>
+  </footer>
 
-    {% block footer %}
-        <div class="container fixed-bottom">
-        <footer>
-            <ul class="nav justify-content-center border-top pb-1 mb-3">
-                <li class="nav-item"><a href="https://ru.hexlet.io/" class="nav-link px-2 text-muted">Hexlet</a></li>
-                <li class="nav-item"><a href="https://github.com/uzapolsky" class="nav-link px-2 text-muted">Github</a></li>
-            </ul>
-        </footer>
-        </div>
-    {% endblock %}
-
+  {% endblock %}
 </body>
