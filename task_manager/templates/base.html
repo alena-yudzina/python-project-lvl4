@@ -4,7 +4,7 @@
 
 <head>
   <title>{% block title %}Task manager{% endblock %}</title>
-  <link rel="icon" href="{% static 'favicon.svg' %}" type="image/x-icon">
+  <link rel="icon" href="{% static 'favicon.svg' %}" type="image/x-icon" />
 </head>
 
 {% load django_bootstrap5 %} {% bootstrap_css %} {% bootstrap_javascript %}
@@ -13,36 +13,72 @@
   {% block navbar %}
   <nav class="navbar navbar-expand-md navbar-light bg-light">
     <div class="container">
-      <a href="{% url '/' %}" class="navbar-brand">{% trans "Task manager" %}</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
+      <a href="{% url '/' %}" class="navbar-brand"
+        >{% trans "Task manager" %}</a
+      >
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navmenu"
+      >
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navmenu">
         <ul class="navbar-nav">
-          <li class="nav-item"><a href="{% url 'users' %}" class="nav-link fw-light">{% trans "Users" %}</a></li>
+          <li class="nav-item">
+            <a href="{% url 'users' %}" class="nav-link fw-light"
+              >{% trans "Users" %}</a
+            >
+          </li>
         </ul>
         {% if user.is_authenticated %}
         <ul class="navbar-nav">
-          <li class="nav-item"><a href="{% url '/' %}" class="nav-link fw-light">{% trans "Statuses" %}</a></li>
+          <li class="nav-item">
+            <a href="{% url '/' %}" class="nav-link fw-light"
+              >{% trans "Statuses" %}</a
+            >
+          </li>
         </ul>
         <ul class="navbar-nav">
-          <li class="nav-item"><a href="{% url '/' %}" class="nav-link fw-light">{% trans "Tags" %}</a></li>
+          <li class="nav-item">
+            <a href="{% url '/' %}" class="nav-link fw-light"
+              >{% trans "Tags" %}</a
+            >
+          </li>
         </ul>
         <ul class="navbar-nav">
-          <li class="nav-item"><a href="{% url '/' %}" class="nav-link fw-light">{% trans "Tasks" %}</a></li>
+          <li class="nav-item">
+            <a href="{% url '/' %}" class="nav-link fw-light"
+              >{% trans "Tasks" %}</a
+            >
+          </li>
         </ul>
         <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a href="{% url 'logout' %}" class="nav-link fw-light">{% trans "Log out" %}</a></li>
+          <li class="nav-item">
+            <a href="{% url 'logout' %}" class="nav-link fw-light"
+              >{% trans "Log out" %}</a
+            >
+          </li>
         </ul>
         {% else %}
         <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a href="{% url 'login' %}" class="nav-link fw-light">{% trans "Log in" %}</a></li>
+          <li class="nav-item">
+            <a href="{% url 'login' %}" class="nav-link fw-light"
+              >{% trans "Log in" %}</a
+            >
+          </li>
         </ul>
         <ul class="navbar-nav">
-          <li class="nav-item"><a href="{% url 'signup' %}" class="nav-link fw-light">{% trans "Sign up" %}</a></li>
+          <li class="nav-item">
+            <a href="{% url 'signup' %}" class="nav-link fw-light"
+              >{% trans "Sign up" %}</a
+            >
+          </li>
         </ul>
         {% endif %}
       </div>
+    </div>
   </nav>
   {% endblock %}
 
@@ -55,8 +91,18 @@
   <footer>
     <div class="d-flex justify-content-center border-top pb-1 mb-3">
       <div class="row">
-        <div class="col"><a href="https://ru.hexlet.io/" class="nav-link px-2 text-muted">Hexlet</a></div>
-        <div class="col"><a href="https://github.com/uzapolsky" class="nav-link px-2 text-muted">Github</a></div>
+        <div class="col">
+          <a href="https://ru.hexlet.io/" class="nav-link px-2 text-muted"
+            >Hexlet</a
+          >
+        </div>
+        <div class="col">
+          <a
+            href="https://github.com/uzapolsky"
+            class="nav-link px-2 text-muted"
+            >Github</a
+          >
+        </div>
       </div>
     </div>
   </footer>

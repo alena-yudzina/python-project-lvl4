@@ -1,30 +1,19 @@
-{% extends "base.html" %}
+{% extends "base.html" %} {% load static %} {% load i18n %} {% load
+django_bootstrap5 %} 
 
-{% load static %}
-{% load i18n %}
+{% block title %}Task manager{% endblock %} 
 
-{% load django_bootstrap5 %}
-{% bootstrap_css %}
-{% bootstrap_javascript %}
-
-{% block title %}Task manager{% endblock %}
-
-{% block content %}
+{% block
+content %}
 <div class="d-flex justify-content-center">
-    <div class="col col-6">
-        <div class="card my-2 mx-3">
-            <div class="card-header bg-light">
-                {{ greeting }}!
-            </div>
-            <div class="card-body">
-                <h5 class="card-title">{% trans "Hello from Hexlet!" %}</h5>
-                <a href="#" class="btn btn-primary">{% trans "Learn more" %}</a>
-            </div>
-        </div>
+  <div class="col col-6">
+    <div class="card my-2 mx-3">
+      <div class="card-header bg-light">{{ greeting }}!</div>
+      <div class="card-body">
+        <h5 class="card-title">{% trans "Hello from Hexlet!" %}</h5>
+        <a href="#" class="btn btn-primary">{% trans "Learn more" %}</a>
+      </div>
     </div>
+  </div>
 </div>
 {% endblock %}
-
-
-
-
